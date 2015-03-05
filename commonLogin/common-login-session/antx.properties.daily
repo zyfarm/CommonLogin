@@ -1,0 +1,11 @@
+cache=redis
+cache.host=127.0.0.1
+cache.slave.host=127.0.0.1
+cache.port=6379
+cache.maxActive=3000
+cache.maxIdle=5
+cache.maxWait=10000
+cache.testOnBorrow=true
+cache.appname=basesso
+cache.isLocalCached=false
+cache.slaveSwitch=false

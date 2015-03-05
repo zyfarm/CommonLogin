@@ -1,0 +1,56 @@
+#set($group=$form.UserPwForm.defaultInstance)
+<script src="$existContent.getURI('assets/js/encrypt/security.js')"></script>
+
+<div id="login-pos">
+    <div style="text-align: center;margin: 9px;">
+        登录
+    </div>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="exist">
+            <div id="login_box">
+                <input type="hidden" id="mod" name="mod" value=$mod/>
+                <input type="hidden" id="exp" name="exp" value=$exp/>
+
+                <form action="" method="post">
+                    <input type="hidden" name="action" value="LoginCheckAction"/>
+                    <input type="hidden" name="redirectUrl" value="$!redirectUrl"/>
+
+                    <div>
+                        <input type="text" id="name" name="$!group.userName.key" value="$!group.userName.value"
+                               placeholder="用户名"/>
+                    </div>
+
+                    <div>
+                        <input type="password" id="pw" name="$!group.passWord.key" value="$!group.passWord.value"
+                               placeholder="密码"/>
+                    </div>
+                    <div id="login_hint">
+                        <a href="#">忘记登录密码？</a>
+                    </div>
+                    <input type="submit" id="login_check" name="event_submit_do_check" value="登录">
+
+                    <div id="login_hint">
+                        <a href="#">注册新用户</a>
+                    </div>
+                </form>
+                <div class="error-msg">$!errMsg</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#logintab a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+
+    require([ 'node' ], function ($) {
+        $('#login_check').on('click', function (e) {
+            var mod = $('#mod').val();
+            var exp = $('#exp').val();
+            var key = RSAUtils.getKeyPair(exp, "", mod);
+            //var pw = RSAUtils.encryptedString(key, $('#pw').val());
+            //$('#pw').val(pw);
+        });
+    });
+</script>

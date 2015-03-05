@@ -1,0 +1,33 @@
+<div class="body_wrapper">
+    <div class="post_flow">
+        #foreach($post in $postList)
+            <div id="post_last_update" data-id="$post.post_id">
+                <div id="post_last_update_summury">
+                    <div id="post_last_update_user">
+                        $!post.nick
+                    </div>
+                    <div id="post_last_favorite">
+                        $!post.qfavorite
+                        1
+                    </div>
+                </div>
+                <div id="post_profile">
+                    <div id="post_last_update_event">
+                        xxx关注ooo
+                    </div>
+                    <div id="post_title">
+                        <a href="/qa/question_detail.htm?qid=$!post.qid#answ-$!post.aid">$!post.title</a>
+                    </div>
+                    <div id="post_content">
+                        $!post.acontent
+                    </div>
+                </div>
+            </div>
+        #end
+        <div class="post_top">
+
+        </div>
+    </div>
+</div>
+#*<script type="text/javascript" src="$assetsContent.getURI('js/rolling.js')"></script>*#
+

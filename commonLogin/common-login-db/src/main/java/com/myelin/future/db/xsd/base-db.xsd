@@ -1,0 +1,46 @@
+<xsd:schema xmlns="http://base-site.org/schema/base-db"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://base-site.org/schema/base-db"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[ Namespace support for databaseconfig ]]></xsd:documentation>
+    </xsd:annotation>
+
+    <xsd:element name="db-config" type="databaseConfig">
+        <xsd:annotation>
+            <xsd:documentation><![CDATA[数据库配置,直接暴露给用户]]></xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+
+    <xsd:complexType name="databaseConfig">
+
+        <xsd:attribute name="db-host" type="xsd:string" use="required">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[数据库地址]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+
+
+        <xsd:attribute name="db-port" type="xsd:string" use="required">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[数据库端口号]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+
+
+        <xsd:attribute name="db-name" type="xsd:string" use="required">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[数据库名称]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+
+        <xsd:attribute name="orm" type="xsd:string" use="required">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[使用的orm类型]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+
+</xsd:schema>

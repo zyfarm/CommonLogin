@@ -1,0 +1,17 @@
+<div class="common_header">
+    <div class="header_logo">
+        <img src="$assetsContent.getURI('img/careme_logo.png')"/>
+    </div>
+    <div class="header_profile">
+        #if($!isLogin==true)
+            <span>
+                <a href="#">我的账户</a>
+                <a href="$logoutUrl">登出</a>
+            </span>
+        #else
+            <span>
+                <a href="$loginUrl">登录</a>
+            </span>
+        #end
+    </div>
+</div>

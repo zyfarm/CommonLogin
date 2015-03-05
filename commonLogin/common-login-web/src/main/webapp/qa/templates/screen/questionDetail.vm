@@ -1,0 +1,10 @@
+<div>
+    <div>
+        <div>
+            $!question_detail.title
+        </div>
+        <div>
+            $!question_detail.postContent
+        </div>
+    </div>
+</div>

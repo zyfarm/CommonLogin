@@ -1,0 +1,148 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean class="com.myelin.future.server.config.ServerSessionConfig">
+        <property name="defaultProperties">
+            <props>
+                <prop key="loginType">all</prop>
+                <prop key="expireTime">4500</prop>
+            </props>
+        </property>
+
+        <property name="cookieConfigs">
+            <list>
+                <props>
+                    <prop key="cookieName">cToken</prop>
+                    <prop key="cookieNick">c_token</prop>
+                    <prop key="expire">-1</prop>
+                    <prop key="domain">${cookie.domain}</prop>
+                    <prop key="isHttpOnly">true</prop>
+                    <prop key="EncryptMethod">none</prop>
+                    <prop key="path">/</prop>
+                    <prop key="isBase64">false</prop>
+                </props>
+
+                <props>
+                    <prop key="cookieName">sessionId</prop>
+                    <prop key="cookieNick">ck2</prop>
+                    <prop key="expire">-1</prop>
+                    <prop key="domain">${cookie.domain}</prop>
+                    <prop key="isHttpOnly">true</prop>
+                    <prop key="EncryptMethod">none</prop>
+                    <prop key="path">/</prop>
+                    <prop key="isBase64">false</prop>
+                </props>
+
+                <props>
+                    <prop key="cookieName">name</prop>
+                    <prop key="cookieNick">an</prop>
+                    <prop key="expire">-1</prop>
+                    <prop key="domain">${cookie.domain}</prop>
+                    <prop key="isHttpOnly">true</prop>
+                    <prop key="EncryptMethod">none</prop>
+                    <prop key="path">/</prop>
+                    <prop key="isBase64">true</prop>
+                </props>
+
+                <props>
+                    <prop key="cookieName">isLogin</prop>
+                    <prop key="cookieNick">lg</prop>
+                    <prop key="expire">-1</prop>
+                    <prop key="domain">${cookie.domain}</prop>
+                    <prop key="isHttpOnly">true</prop>
+                    <prop key="EncryptMethod">none</prop>
+                    <prop key="path">/</prop>
+                    <prop key="isBase64">false</prop>
+                </props>
+
+                <props>
+                    <prop key="cookieName">signature</prop>
+                    <prop key="cookieNick">sg</prop>
+                    <prop key="expire">-1</prop>
+                    <prop key="domain">${cookie.domain}</prop>
+                    <prop key="isHttpOnly">true</prop>
+                    <prop key="EncryptMethod">none</prop>
+                    <prop key="path">/</prop>
+                    <prop key="isBase64">true</prop>
+                </props>
+
+
+                <props>
+                    <prop key="cookieName">lastVisitCookie</prop>
+                    <prop key="cookieNick">lvc</prop>
+                    <prop key="expire">-1</prop>
+                    <prop key="domain">${cookie.domain}</prop>
+                    <prop key="isHttpOnly">true</prop>
+                    <prop key="EncryptMethod">blowfish</prop>
+                    <prop key="path">/</prop>
+                    <prop key="isBase64">false</prop>
+                </props>
+            </list>
+
+        </property>
+
+        <property name="redisEnv">
+            <value>${redis.env}</value>
+        </property>
+
+        <property name="sessionConfigs">
+            <list>
+                <props>
+                    <prop key="loginType">all</prop>
+                    <prop key="expireTime">4500</prop>
+                    <prop key="sessionKey">loginType</prop>
+                    <prop key="defaultVal">1</prop>
+                    <prop key="isBase64">false</prop>
+                </props>
+
+                <props>
+                    <prop key="loginType">all</prop>
+                    <prop key="expireTime">4500</prop>
+                    <prop key="sessionKey">nick</prop>
+                    <prop key="defaultVal">zhengyu.jy</prop>
+                    <prop key="isBase64">false</prop>
+                </props>
+
+                <props>
+                    <prop key="loginType">all</prop>
+                    <prop key="expireTime">4500</prop>
+                    <prop key="sessionKey">name</prop>
+                    <prop key="defaultVal">zhengyu.jy</prop>
+                    <prop key="isBase64">false</prop>
+                </props>
+
+                <props>
+                    <prop key="loginType">all</prop>
+                    <prop key="expireTime">4500</prop>
+                    <prop key="sessionKey">userId</prop>
+                    <prop key="defaultVal">1</prop>
+                    <prop key="isBase64">false</prop>
+                </props>
+
+                <props>
+                    <prop key="loginType">all</prop>
+                    <prop key="expireTime">4500</prop>
+                    <prop key="sessionKey">cToken</prop>
+                    <prop key="defaultVal">helloworldbabycomeon</prop>
+                    <prop key="isBase64">false</prop>
+                </props>
+
+                <props>
+                    <prop key="loginType">all</prop>
+                    <prop key="expireTime">4500</prop>
+                    <prop key="sessionKey">isLogin</prop>
+                    <prop key="defaultVal">true</prop>
+                    <prop key="isBase64">false</prop>
+                </props>
+
+                <props>
+                    <prop key="loginType">all</prop>
+                    <prop key="expireTime">4500</prop>
+                    <prop key="sessionKey">gmtCreate</prop>
+                    <prop key="defaultVal">null</prop>
+                    <prop key="isBase64">false</prop>
+                </props>
+            </list>
+        </property>
+    </bean>
+</beans>

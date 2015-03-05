@@ -1,0 +1,4 @@
+<div>
+    <h1>选择登录方式:</h1>
+    <h1>$currentstatus:<span>$!status</span></h1>
+</div>

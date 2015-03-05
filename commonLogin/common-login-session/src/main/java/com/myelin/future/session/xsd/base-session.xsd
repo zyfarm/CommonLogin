@@ -1,0 +1,26 @@
+<xsd:schema xmlns="http://base-site.org/schema/base-session"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://base-site.org/schema/base-session"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[ Namespace support for databaseconfig ]]></xsd:documentation>
+    </xsd:annotation>
+
+    <xsd:element name="session-config" type="sessionConfig">
+        <xsd:annotation>
+            <xsd:documentation><![CDATA[session配置,直接暴露给用户]]></xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+
+
+    <xsd:complexType name="sessionConfig">
+        <xsd:attribute name="login-adapter" type="xsd:string" use="required">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[登录方案]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+
+</xsd:schema>

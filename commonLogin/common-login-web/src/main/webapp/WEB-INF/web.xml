@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="
+             http://java.sun.com/xml/ns/j2ee  http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd
+         ">
+
+
+    <context-param>
+        <param-name>loggingRoot</param-name>
+        <param-value>${loggerRoot}</param-value>
+    </context-param>
+    <context-param>
+        <param-name>loggingLevel</param-name>
+        <param-value>${loggerLevel}</param-value>
+    </context-param>
+    <context-param>
+        <param-name>loggingCharset</param-name>
+        <param-value>${loggerCharset}</param-value>
+    </context-param>
+
+
+    <!-- 初始化日志系统 -->
+    <listener>
+        <listener-class>com.alibaba.citrus.logconfig.LogConfiguratorListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+
+
+    <!--sessionFilter 用于做登录态校验，生成sid,server端不开启自动跳转-->
+    <filter>
+        <filter-name>commonSessionFilter</filter-name>
+        <filter-class>com.myelin.future.session.filter.CommonSessionFilter</filter-class>
+        <init-param>
+            <param-name>configEnv</param-name>
+            <param-value>daily</param-value>
+        </init-param>
+        <init-param>
+            <param-name>isOpen</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>isAutoTransfer</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>transferLoginUrl</param-name>
+            <param-value>${currentHost}/login/login.htm?type=commonLoginAdapter</param-value>
+        </init-param>
+    </filter>
+
+
+    <filter-mapping>
+        <filter-name>commonSessionFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <!--webx Filter 用于处理登录的请求-->
+    <filter>
+        <filter-name>webx</filter-name>
+        <filter-class>com.alibaba.citrus.webx.servlet.WebxFrameworkFilter</filter-class>
+        <init-param>
+            <param-name>excludes</param-name>
+            <param-value>/api</param-value>
+        </init-param>
+    </filter>
+
+    <!-- 装载/WEB-INF/webx.xml, /WEB-INF/webx-*.xml -->
+    <listener>
+        <listener-class>com.alibaba.citrus.webx.context.WebxContextLoaderListener</listener-class>
+    </listener>
+
+
+    <!-- webx 日志记录-->
+    <filter>
+        <filter-name>mdc</filter-name>
+        <filter-class>com.alibaba.citrus.webx.servlet.SetLoggingContextFilter</filter-class>
+    </filter>
+
+
+    <filter-mapping>
+        <filter-name>mdc</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>webx</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--api 处理-->
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:WEB-INF/spring/springmvc-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+</web-app>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Logback Configuration.  -->
+<!--日志格式:   启动到现在的秒数-[时间戳]-[线程名]-[输出日志级别]-类名:方法名:行数-消息 -->
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <encoding>${loggerCharset}</encoding>
+
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern><![CDATA[
+        %n%r [%d{yyyy-MM-dd HH:mm:ss}]-[%thread]-[%highlight(%p)]-%class:%method:%line-%m%n
+            ]]></pattern>
+        </layout>
+    </appender>
+
+    <appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.err</target>
+        <encoding>${loggerCharset}</encoding>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern><![CDATA[
+		%n%r [%d{yyyy-MM-dd HH:mm:ss}]-[%thread]-[%highlight(%p)]-%class:%method:%line-%m%n
+            ]]></pattern>
+        </layout>
+    </appender>
+
+    <appender name="PROJECT"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${loggerRoot}/careme.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${loggerRoot}/careme.log.%d</fileNamePattern>
+
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoding>${loggerCharset}</encoding>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern><![CDATA[
+		%n%r [%d{yyyy-MM-dd HH:mm:ss}]-[%thread]-[%highlight(%p)]-%class:%method:%line-%m%n
+            ]]></pattern>
+        </layout>
+    </appender>
+
+
+    <logger name="org.apache">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="org.springframework">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="com.myelin.future" additivity="true">
+        <level value="INFO"/>
+        <appender-ref ref="PROJECT"/>
+    </logger>
+
+
+    <root>
+        <level value="${loggerLevel}"/>
+        <appender-ref ref="STDERR"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="PROJECT"/>
+    </root>
+</configuration>

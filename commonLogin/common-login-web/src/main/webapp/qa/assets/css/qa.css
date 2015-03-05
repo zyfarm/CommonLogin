@@ -1,0 +1,30 @@
+.post_flow {
+    width: 69%;
+}
+
+#post_last_update {
+    border-top: solid 1px #eaeaea;
+    margin: 10px;
+}
+
+#post_last_update #post_last_update_summury {
+    float: left;
+    height: 55px;
+    width: 50px;
+}
+
+#post_profile #post_last_update_event {
+    font-size: 12px;
+    color: #ADA7A7;
+}
+
+#post_profile #post_title {
+    color: #00ADFF;
+    font-weight: bold;
+}
+
+
+#post_profile {
+    margin-left: 64px;
+}
+

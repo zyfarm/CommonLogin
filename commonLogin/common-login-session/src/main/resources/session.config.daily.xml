@@ -1,0 +1,155 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean class="com.myelin.future.session.config.SessionSpringConfigFactory">
+        <property name="defaultConfig">
+            <props>
+                <prop key="cookiePath">/</prop>
+                <prop key="storeType">cookie</prop>
+                <prop key="lifeCycle">-1</prop>
+                <prop key="isDaily">true</prop>
+                <prop key="domain">.caremesite.com</prop>
+            </props>
+        </property>
+
+        <property name="authorizedSessions">
+            <list>
+                <value>tenantId</value>
+                <value>projectId</value>
+                <value>hasSMSVerified</value>
+            </list>
+        </property>
+
+        <property name="combineKeyConfig">
+            <list>
+                <props>
+                    <prop key="compressKey">storeType</prop>
+                    <prop key="lifeCycle">-1</prop>
+                    <prop key="domain">.base.com</prop>
+                </props>
+
+                <props>
+                    <prop key="compressKey">uc2</prop>
+                    <prop key="lifeCycle">864000</prop>
+                    <prop key="domain">.base.com</prop>
+                    <prop key="isHttpOnly">true</prop>
+                </props>
+
+            </list>
+        </property>
+
+        <property name="properties">
+            <list>
+                <props>
+                    <prop key="backend.expiredTime">4500</prop>
+                    <prop key="backend.visitor.expiredTime">2700</prop>
+                    <prop key="cookie.expiredTime">3600</prop>
+                    <prop key="version">0</prop>
+                </props>
+            </list>
+        </property>
+
+        <property name="configEntries">
+            <list>
+                <props>
+                    <prop key="key">version</prop>
+                    <prop key="nickKey">v</prop>
+                    <prop key="storeType">cookie</prop>
+                </props>
+
+                <props>
+                    <prop key="key">userId</prop>
+                    <prop key="nickKey">ck1</prop>
+                    <prop key="storeType">redis</prop>
+                    <prop key="isEnCrypt">true</prop>
+                    <prop key="isBase64">false</prop>
+                    <prop key="isHttpOnly">true</prop>
+                </props>
+
+                <props>
+                    <prop key="key">redisLastUpdateTime</prop>
+                    <prop key="nickKey">rlut</prop>
+                    <prop key="storeType">redis</prop>
+                    <prop key="isEnCrypt">true</prop>
+                    <prop key="isBase64">false</prop>
+                    <prop key="isHttpOnly">true</prop>
+                </props>
+
+                <props>
+                    <prop key="key">sessionId</prop>
+                    <prop key="nickKey">ck2</prop>
+                    <prop key="storeType">cookie</prop>
+                    <prop key="isEnCrypt">false</prop>
+                    <prop key="isBase64">false</prop>
+                    <prop key="isHttpOnly">true</prop>
+                </props>
+                <props>
+                    <prop key="key">nick</prop>
+                    <prop key="escapeJava">true</prop>
+                    <prop key="nickKey">nk</prop>
+                    <prop key="storeType">redis</prop>
+                    <prop key="isEnCrypt">false</prop>
+                    <prop key="isBase64">true</prop>
+                    <prop key="isHttpOnly">true</prop>
+                </props>
+
+                <props>
+                    <prop key="key">loginType</prop>
+                    <prop key="escapeJava">true</prop>
+                    <prop key="nickKey">lgt</prop>
+                    <prop key="storeType">redis</prop>
+                    <prop key="isEnCrypt">false</prop>
+                    <prop key="isBase64">false</prop>
+                    <prop key="isHttpOnly">true</prop>
+                </props>
+
+                <props>
+                    <prop key="key">name</prop>
+                    <prop key="escapeJava">true</prop>
+                    <prop key="nickKey">an</prop>
+                    <prop key="storeType">redis</prop>
+                    <prop key="isEnCrypt">false</prop>
+                    <prop key="isBase64">false</prop>
+                    <prop key="isHttpOnly">true</prop>
+                </props>
+
+                <props>
+                    <prop key="key">cToken</prop>
+                    <prop key="escapeJava">true</prop>
+                    <prop key="nickKey">c_token</prop>
+                    <prop key="storeType">redis</prop>
+                    <prop key="isEnCrypt">false</prop>
+                    <prop key="isBase64">false</prop>
+                    <prop key="isHttpOnly">true</prop>
+                </props>
+
+
+                <props>
+                    <prop key="key">lastVisitCookie</prop>
+                    <prop key="nickKey">lvc</prop>
+                    <prop key="storeType">cookie</prop>
+                    <prop key="isEnCrypt">true</prop>
+                    <prop key="isBase64">false</prop>
+                    <prop key="isHttpOnly">true</prop>
+                </props>
+                <props>
+                    <prop key="key">isLogin</prop>
+                    <prop key="nickKey">lg</prop>
+                    <prop key="storeType">redis</prop>
+                    <prop key="isEnCrypt">true</prop>
+                    <prop key="isBase64">true</prop>
+                    <prop key="isHttpOnly">true</prop>
+                </props>
+
+                <props>
+                    <prop key="key">signature</prop>
+                    <prop key="nickKey">sg</prop>
+                    <prop key="storeType">redis</prop>
+                    <prop key="isEnCrypt">false</prop>
+                    <prop key="isBase64">false</prop>
+                    <prop key="isHttpOnly">true</prop>
+                </props>
+            </list>
+        </property>
+    </bean>
+</beans>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="GB2312"?>
+        <!--DOCTYPE access PUBLIC "-//ALIBABA//DTD Page Authorization Configuration V1.0//EN"
+                "http://toolkit.alibaba-inc.com/dtd/toolkit/sample/access.dtd"-->
+
+        <!-- 顶级element -->
+        <!ELEMENT access (match)*>
+        <!ATTLIST access realm CDATA #IMPLIED>
+
+        <!-- 代表一个target匹配 -->
+        <!ELEMENT match (grant)*>
+        <!ATTLIST match target CDATA #REQUIRED>
+
+        <!-- 代表一个授权 -->
+        <!ELEMENT grant EMPTY>
+        <!ATTLIST grant user CDATA #IMPLIED>
+        <!ATTLIST grant role CDATA #IMPLIED>
+        <!ATTLIST grant allow CDATA #IMPLIED>
+        <!ATTLIST grant deny CDATA #IMPLIED>

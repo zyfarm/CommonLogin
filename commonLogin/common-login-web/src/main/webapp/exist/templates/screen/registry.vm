@@ -1,0 +1,32 @@
+#set($group=$form.RegistryForm.defaultInstance)
+
+<script src="$loginContent.getURI('assets/js/encrypt/security.js')"></script>
+
+<div id="login_box">
+	<input type="hidden" id="mod" name="mod" value=$mod />
+	<input type="hidden" id="exp" name="exp" value=$exp />
+	<form  action="" method="post">
+		<input type="hidden" name="action" value="RegistryAction" />
+		<label>昵称:   </label><input type="text" id="nick" name="$!group.nick.key" value="$!group.nick.value" />
+		<label>用户名：</label><input type="text" id="name" name="$!group.name.key" value="$!group.name.value" />
+		<label>密码: </label><input type="password" id="pw" name="$!group.passwd.key" value="$!group.passwd.value" />
+		<label>邮箱：</label><input type="text" id="email" name="$!group.email.key" value="$!group.email.value" />
+		<label>电话：</label><input type="text" id="phone" name="$!group.phone.key" value="$!group.phone.value" />
+		<input type="submit" id="registry_btn" name="event_submit_do_registry" value="提交信息">
+	</form>
+    <a href="$!loginContent.getURI('login.htm')"><div>用户登录</div></a>
+    <div class="error-msg">
+        $!errMsg
+    </div>
+</div>
+<script type="text/javascript">
+    require(['node'], function ($) {
+        $('#registry_btn').on('click',function(e){
+            var mod=$('#mod').val();
+            var exp=$('#exp').val();
+            var key=RSAUtils.getKeyPair(exp,"",mod);
+            var pw=RSAUtils.encryptedString(key,$('#pw').val());
+            $('#pw').val(pw);
+        });
+    });
+</script>

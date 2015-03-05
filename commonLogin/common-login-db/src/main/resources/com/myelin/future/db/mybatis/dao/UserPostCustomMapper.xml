@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myelin.future.db.mybatis.dao.UserPostCustomMapper">
+    <resultMap id="UserPostCustomResultMap" type="com.myelin.future.db.mybatis.dataobj.UserCustomPost">
+        <result column="post_id" jdbcType="BIGINT" property="postId"/>
+        <result column="post_type" jdbcType="INTEGER" property="postType"/>
+        <result column="up_point" jdbcType="BIGINT" property="upPoint"/>
+        <result column="down_point" jdbcType="BIGINT" property="downPoint"/>
+        <result column="ctime" jdbcType="TIMESTAMP" property="ctime"/>
+        <result column="utime" jdbcType="TIMESTAMP" property="utime"/>
+        <result column="parent_id" jdbcType="BIGINT" property="parentId"/>
+        <result column="is_hidden" jdbcType="INTEGER" property="isHidden"/>
+        <result column="is_cryptonym" jdbcType="INTEGER" property="isCryptonym"/>
+        <result column="post_content" jdbcType="LONGVARCHAR" property="postContent"/>
+        <result column="title" jdbcType="LONGVARCHAR" property="title"/>
+        <result column="favorite_num" jdbcType="INTEGER" property="favoriteNum"/>
+        <result column="comment_num" jdbcType="INTEGER" property="commentNum"/>
+        <result column="nick" jdbcType="VARCHAR" property="nick"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="user_desc" jdbcType="VARCHAR" property="userDesc"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="user_img" jdbcType="VARCHAR" property="userImg"/>
+        <result column="last_event" jdbcType="LONGVARCHAR" property="lastEvent"/>
+    </resultMap>
+
+    <resultMap id="questionVoMap" type="com.myelin.future.db.mybatis.dataobj.QuestionVO">
+        <result column="qid" jdbcType="BIGINT" property="qid"/>
+        <result column="qfavorite" jdbcType="INTEGER" property="qfavorite"/>
+        <result column="aid" jdbcType="BIGINT" property="aid"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="user_img" jdbcType="VARCHAR" property="userImg"/>
+        <result column="last_event" jdbcType="VARCHAR" property="lastEvent"/>
+        <result column="acontent" jdbcType="LONGVARCHAR" property="acontent"/>
+        <result column="nick" jdbcType="VARCHAR" property="nick"/>
+    </resultMap>
+
+    <sql id="User_Custom_Post_List">
+        careme_post.post_id,careme_post.post_type,careme_post.up_point,careme_post.down_point,
+        careme_post.ctime,careme_post.utime,careme_post.post_content,careme_post.parent_id,
+        careme_post.is_hidden,careme_post.is_cryptonym,
+        careme_post.title,careme_post.favorite_num,
+        careme_post.comment_num,
+        careme_post.last_event,
+        careme_user_profile.nick,careme_user_profile.name,careme_user_profile.user_desc,
+        careme_user_profile.user_img,careme_user_profile.user_id
+    </sql>
+
+    <select id="selectUserPostByCondition" parameterType="hashmap"
+            resultMap="UserPostCustomResultMap">
+        select
+        <include refid="User_Custom_Post_List"/>
+        from careme_post inner join careme_user_profile
+        where careme_post.post_user_id=careme_user_profile.user_id and careme_post.is_hidden=0 and
+        careme_user_profile.is_deleted=0 and careme_user_profile.is_disabled=0 and careme_post.post_type=#{postType}
+
+        <if test="userId != null">
+            and careme_user_profile.userId=#{userId}
+        </if>
+
+        <if test="pageSize != null and pageNum != null">
+            limit #{pageNum},#{pageSize}
+        </if>
+    </select>
+
+    <select id="selectUserPostByConditionCount" parameterType="hashmap" resultType="int">
+        select
+        count(*) as num
+        from careme_post inner join careme_user_profile
+        where careme_post.post_user_id=careme_user_profile.user_id and careme_post.is_hidden=0 and
+        careme_user_profile.is_deleted=0 and careme_user_profile.is_disabled=0
+
+        <if test="userId != null">
+            and careme_user_profile.userId=#{userId}
+        </if>
+
+        <if test="pageSize != null and pageNum != null">
+            limit #{pageNum},#{pageSize}
+        </if>
+    </select>
+
+    <select id="selectUserPostRelationByCondition" parameterType="hashmap" resultMap="questionVoMap">
+        select a.post_id as qid,
+        a.favorite_num as qfavorite,
+        b.post_id as aid,
+        a.title as title,
+        c.user_id as user_id,
+        c.user_img as user_img,
+        c.nick as nick,
+        a.last_event as last_event,
+        b.post_content as acontent
+        from careme_post a
+        inner join
+        (select parent_id,post_id,post_content,post_user_id from careme_post where post_type=#{postType}
+
+        <if test="postUserId != null">
+            and post_user_id=${postUserId}
+        </if>
+
+        ) b
+        inner join careme_user_profile c where a.post_id=b.parent_id and b.post_user_id=c.user_id
+    </select>
+</mapper>

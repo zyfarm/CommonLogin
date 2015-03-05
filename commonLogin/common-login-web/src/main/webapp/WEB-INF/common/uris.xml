@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:services="http://www.alibaba.com/schema/services"
+             xmlns:uris="http://www.alibaba.com/schema/services/uris"
+             xsi:schemaLocation="http://www.alibaba.com/schema/services http://localhost:8080/schema/services.xsd
+                 http://www.alibaba.com/schema/services/uris http://localhost:8080/schema/services-uris.xsd
+
+                 http://www.springframework.org/schema/beans http://localhost:8080/schema/www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <services:uris>
+        <uris:uri id="server" requestAware="true"/>
+        <uris:turbine-uri id="homeModule" exposed="true" extends="server">
+            <componentPath>/</componentPath>
+        </uris:turbine-uri>
+
+        <uris:turbine-content-uri id="homeContent" exposed="true" extends="homeModule">
+            <componentPath>/home</componentPath>
+        </uris:turbine-content-uri>
+
+
+        <uris:turbine-uri id="webxModule" exposed="true" extends="server">
+            <componentPath>/webx</componentPath>
+        </uris:turbine-uri>
+
+        <uris:turbine-content-uri id="webxContent" exposed="true" extends="webxModule"/>
+
+        <uris:turbine-uri id="assetsModule" exposed="true" extends="server">
+            <componentPath>/assets</componentPath>
+        </uris:turbine-uri>
+
+
+        <uris:turbine-content-uri id="assetsContent" exposed="true" extends="assetsModule"/>
+
+        <uris:turbine-uri id="loginModule" exposed="true" extends="server">
+            <componentPath>/login</componentPath>
+        </uris:turbine-uri>
+        <uris:turbine-content-uri id="loginContent" exposed="true" extends="loginModule"/>
+
+
+        <uris:turbine-uri id="existModule" exposed="true" extends="server">
+            <componentPath>/exist</componentPath>
+        </uris:turbine-uri>
+        <uris:turbine-content-uri id="existContent" exposed="true" extends="existModule"/>
+
+        <uris:turbine-uri id="workbenchModule" exposed="true" extends="server">
+            <componentPath>/workbench</componentPath>
+        </uris:turbine-uri>
+        <uris:turbine-content-uri id="workbenchContent" exposed="true" extends="workbenchModule"/>
+
+        <uris:turbine-uri id="qaModule" exposed="true" extends="server">
+            <componentPath>/qa</componentPath>
+        </uris:turbine-uri>
+        <uris:turbine-content-uri id="qaContent" exposed="true" extends="qaModule"/>
+
+
+    </services:uris>
+</beans:beans>

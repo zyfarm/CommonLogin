@@ -1,0 +1,94 @@
+body {
+    background: #43596D;
+    color:#FFF;
+    width: 370px;
+}
+
+.notice {
+    color: #000;
+}
+
+#login-form {
+    width: 300px;
+    margin: 35px;
+}
+
+#login-title {
+    color: #FFF;
+    font-size: 30px !important;
+    margin-bottom: 10px;
+}
+
+#login-desc {
+    margin-bottom:13px;
+}
+
+#login-sub-title {
+    color:#919da6;
+    position: absolute;
+    top: 18px;
+    left: 66px;
+}
+
+#fm-login-submit {
+    background: #43596D;
+    border: 1px solid #FFF;
+    width: 300px;
+    height: 50px;
+    padding: 5px;
+}
+
+.fm-button {
+    box-shadow: none;
+}
+
+#login-submit {
+    margin-top: 25px;
+}
+
+.fm-text, .fm-textarea {
+    box-shadow: none;
+}
+
+#login-content .fm-field-wrap {
+}
+
+#forgot-password-link {
+    color: #FFF;
+}
+
+.fm-label-extra {
+    margin-bottom:3px;
+}
+
+#login-content .fm-text {
+    width: 300px;
+    height: 48px;
+    background: #5c6d7e;
+    color: #FFF;
+    border:1px solid #aabece;
+}
+
+.fm-label {
+
+}
+
+label {
+    display:none;
+}
+
+.fm-text, .fm-textarea {
+    padding:0;
+}
+
+#login-other .register a {
+    color: #FFF;
+}
+
+#login-content #fm-login-checkcode-update  {
+    color: #FFF;
+}
+
+#login-content #fm-login-checkcode {
+    height:30px;
+}

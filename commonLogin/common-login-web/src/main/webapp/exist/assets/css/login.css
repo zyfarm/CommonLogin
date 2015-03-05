@@ -1,0 +1,45 @@
+.login_wrapper {
+    position: relative;
+}
+
+#login-pos {
+    position: relative;
+    top: 120px;
+    left: 1102px;
+    padding: 10px;
+    border: 1px solid rgb(214, 214, 214);
+    width: 14%;
+}
+
+.login_content {
+
+}
+
+.login_content #login_check {
+
+}
+
+#login_hint {
+    text-align: right;
+    font-size: 11px;
+}
+
+#login_hint a:hover {
+    text-decoration: none;
+}
+
+#login_check {
+    background: rgb(151, 218, 167);
+    border: 0;
+    width: 220px;
+    height: 36px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 28px;
+}
+
+#login-pos .input-text {
+
+}
