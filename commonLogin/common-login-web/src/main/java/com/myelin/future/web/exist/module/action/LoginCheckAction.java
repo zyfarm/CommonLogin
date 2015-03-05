@@ -13,7 +13,7 @@ import com.myelin.future.exception.SystemErrorException;
 import com.myelin.future.server.adapter.LoginAdapter;
 import com.myelin.future.server.adapter.LoginProxy;
 import com.myelin.future.web.exist.module.common.UserPwForm;
-import com.myelin.future.web.web.common.listener.ApplicationContextBeanHelper;
+import com.myelinji.site.careme.commo.lib.ApplicationContextBeanHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
