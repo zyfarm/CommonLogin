@@ -445,6 +445,5 @@
         <module>common-login-web</module>
         <module>common-login-monitor</module>
         <module>common-login-server</module>
-        <module>deploy</module>
     </modules>
 </project>
